@@ -1,6 +1,6 @@
 use std::error::Error;
 use std::fs::{self, File, OpenOptions};
-use std::io::{self, ErrorKind, Seek, SeekFrom, Write};
+use std::io::{ErrorKind, Seek, SeekFrom, Write};
 use std::os::unix::prelude::AsRawFd;
 use std::ptr;
 
@@ -9,8 +9,8 @@ use byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
 //this mod functions for my laptop network pcie
 //pcie version pcie 3.0
 
-pub(in crate::pci) const CMD_REG_OFFSET: u64 = 4;
-pub(in crate::pci) const BUS_MS_ENABLE_BIT: u64 = 2;
+const CMD_REG_OFFSET: u64 = 4;
+const BUS_MS_ENABLE_BIT: u64 = 2;
 
 const ROOT_PCI_DVICE: &str = "/sys/bus/pci/devices/";
 
@@ -25,7 +25,7 @@ pub fn add_pci_unbind(pci_addr: &str) -> IOResult {
             Ok(())
         }
         Err(ref e) if e.kind() == ErrorKind::NotFound => {
-            println!("there is no ubind file");
+            println!("there is no unbind file");
             Ok(())
         }
         Err(ref e) if e.kind() == ErrorKind::Other => {
@@ -82,4 +82,12 @@ pub fn pci_map_resource(pci_addr: &str) -> Result<(*mut u8, usize), Box<dyn Erro
     } else {
         Ok((ptr, len))
     }
+}
+pub fn open_pci_file(pci_name: &str, resource: &str) -> Result<File, Box<dyn Error>> {
+    let path = ROOT_PCI_DVICE.to_owned() + pci_name + "/" + resource;
+    Ok(OpenOptions::new().read(true).open(path)?)
+}
+pub fn read_nbytes(file: &mut File, offset: usize, nbytes: usize) -> Result<u64, Box<dyn Error>> {
+    file.seek(SeekFrom::Start(offset as u64))?;
+    Ok(file.read_uint::<NativeEndian>(nbytes)?)
 }
