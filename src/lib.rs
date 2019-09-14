@@ -7,7 +7,7 @@ mod tests {
 }
 pub mod prelude {
     pub use crate::constant::*;
-    pub use crate::util::check_kernel_version;
+    pub use crate::util::*;
 }
 
 mod constant;
