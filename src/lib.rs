@@ -7,9 +7,11 @@ mod tests {
 }
 pub mod prelude {
     pub use crate::constant::*;
+    pub use crate::util::check_kernel_version;
 }
 
 mod constant;
 mod driver;
 mod pci;
 mod realtekfe;
+pub(crate) mod util;
