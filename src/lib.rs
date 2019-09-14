@@ -12,3 +12,4 @@ pub mod prelude {
 mod constant;
 mod driver;
 mod pci;
+mod realtekfe;
