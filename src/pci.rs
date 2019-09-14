@@ -6,6 +6,8 @@ use std::ptr;
 
 use byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
 
+use crate::prelude::*;
+
 //this mod functions for my laptop network pcie
 //pcie version pcie 3.0
 
