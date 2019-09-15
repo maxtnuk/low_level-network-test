@@ -1,19 +1,17 @@
-pub mod prelude {
-    pub use crate::constant::*;
-    pub use crate::util::*;
+pub mod prelude {}
+mod test_prelude {
+    pub use crate::realtekfe::constant::*;
+    pub use crate::realtekfe::util::*;
 }
 
-mod constant;
-mod driver;
-mod pci;
+mod devices;
 mod realtekfe;
-pub(crate) mod util;
 
 #[cfg(test)]
 mod tests {
     #[test]
     fn check_network() {
-        use crate::prelude::*;
+        use crate::test_prelude::*;
         let cur = check_kernel_version();
         let other = KernelVersion::new(2, 32, 12);
         assert!(cur >= other, "other is bigger than current kernel version");
