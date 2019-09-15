@@ -7,6 +7,5 @@ when i check pci i got Realtek Fast Ethernet controller.
 
 [![demo](https://asciinema.org/a/bBlY4eyYwXZ6T5nlaDA2d4tKe.svg)](https://asciinema.org/a/bBlY4eyYwXZ6T5nlaDA2d4tKe)
 
-so i will make Realtek Fast Ethernet Controller with Rust
-
+so i will make Realtek Fast Ethernet Controller with Rust 
 Have Fun~~  
