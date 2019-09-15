@@ -4,3 +4,6 @@ rust:
 cache: cargo
 before_cache:
   - rm -rf "$TRAVIS_HOME/.cargo/registry/src"
+script:
+  - cargo build --verbose --all
+  - cargo test --verbose --all
