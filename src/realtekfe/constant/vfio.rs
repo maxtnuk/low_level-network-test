@@ -8,8 +8,8 @@
     unused_mut
 )]
 
-use crate::realtekfe::ioctl::*;
-
+use super::ioctl::*;
+//grabed from linux/vfio.h
 pub const VFIO_API_VERSION: u32 = 0;
 pub const VFIO_TYPE1_IOMMU: u32 = 1;
 pub const VFIO_SPAPR_TCE_IOMMU: u32 = 2;
@@ -27,6 +27,16 @@ pub struct vfio_info_cap_header {
     pub id: u16,
     pub version: u16,
     pub next: u32,
+}
+pub struct vfio_group_status {
+    pub argsz: u32,
+    pub flags: u32,
+}
+pub struct vfio_device_info {
+    pub argsz: u32,
+    pub flags: u32,
+    pub num_regions: u32,
+    pub num_irqs: u32,
 }
 
 pub const VFIO_GET_API_VERSION: u64 = IO(VFIO_TYPE as u64, VFIO_BASE + 0);
@@ -250,8 +260,8 @@ pub const VFIO_IOMMU_INFO_PGSIZES: u32 = 1 << 0;
 pub struct vfio_iommu_type1_dma_map {
     pub argsz: u32,
     pub flags: u32,
-    pub vaddr: u64,
-    pub iova: u64,
+    pub vaddr: *mut u8,
+    pub iova: *mut u8,
     pub size: u64,
 }
 

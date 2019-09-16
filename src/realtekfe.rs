@@ -1,14 +1,19 @@
 use std::collections::VecDeque;
+use std::error::Error;
+use std::mem::size_of;
 use std::os::unix::io::RawFd;
 use std::rc::Rc;
 
 use crate::devices::memory::Mempool;
-use constant::*;
 
 //Realtek Fast Ethernet Controller mod
 pub(crate) mod constant;
-pub(crate) mod ioctl;
 pub(crate) mod util;
+
+use constant::vfio::*;
+use constant::*;
+
+//create vfio with iommu
 
 pub struct RfeDevice {
     pci_addr: String,
