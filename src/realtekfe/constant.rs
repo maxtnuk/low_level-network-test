@@ -1,7 +1,8 @@
-//Because my ethernet controller is REALTEK
-//I will use REALTEK ethernet controller file
-//This is my ethernet controller when i run "lspci | egrep -i --color 'network|ethernet'"
-//09:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL810xE PCI Express Fast Ethernet controller (rev 0a)
+#![allow(dead_code)]
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(clippy::all)]
 
 /*
 ################################################################################
@@ -30,3 +31,11 @@
 #
 ################################################################################
 */
+
+//temparay fd
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union rfe_fd {
+    pub read: u32,
+    pub write: f32,
+}

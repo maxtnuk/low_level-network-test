@@ -6,6 +6,7 @@ mod test_prelude {
 
 mod devices;
 mod realtekfe;
+mod vfio;
 
 #[cfg(test)]
 mod tests {
