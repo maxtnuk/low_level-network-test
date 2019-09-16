@@ -25,27 +25,27 @@ pub const IOC_NONE: u64 = 0;
 pub const IOC_WRITE: u64 = 1;
 pub const IOC_READ: u64 = 2;
 
-pub fn IOC(dir: u64, ioctype: u64, nr: u64, size: u64) -> u64 {
+pub const fn IOC(dir: u64, ioctype: u64, nr: u64, size: u64) -> u64 {
     (dir << IOC_DIRSHIFT)
         | (ioctype << IOC_TYPESHIFT)
         | (nr << IOC_NRSHIFT)
         | (size << IOC_SIZESHIFT)
 }
 
-pub fn IO(ioctype: u64, nr: u64) -> u64 {
+pub const fn IO(ioctype: u64, nr: u64) -> u64 {
     IOC(IOC_NONE, ioctype, nr, 0)
 }
 
-pub fn IOC_DIR(nr: u64) -> u64 {
+pub const fn IOC_DIR(nr: u64) -> u64 {
     (nr >> IOC_DIRSHIFT) & IOC_DIRMASK
 }
-pub fn IOC_TYPE(nr: u64) -> u64 {
+pub const fn IOC_TYPE(nr: u64) -> u64 {
     (nr >> IOC_TYPESHIFT) & IOC_TYPEMASK
 }
-pub fn IOC_NR(nr: u64) -> u64 {
+pub const fn IOC_NR(nr: u64) -> u64 {
     (nr >> IOC_NRSHIFT) & IOC_NRMASK
 }
-pub fn IOC_SIZE(nr: u64) -> u64 {
+pub const fn IOC_SIZE(nr: u64) -> u64 {
     (nr >> IOC_SIZESHIFT) & IOC_SIZEMASK
 }
 
