@@ -93,9 +93,12 @@ pub struct vfio_region_info {
     pub flags: u32,
     pub index: u32,
     pub cap_offset: u32,
-    pub size: u64,
+    pub size: usize,
     pub offset: u64,
 }
+
+//enum part
+pub const VFIO_PCI_CONFIG_REGION_INDEX: u32 = 7;
 
 pub const VFIO_REGION_INFO_FLAG_READ: u32 = 1 << 0;
 pub const VFIO_REGION_INFO_FLAG_WRITE: u32 = 1 << 1;
@@ -107,7 +110,7 @@ pub const VFIO_REGION_INFO_CAP_TYPE: u32 = 2;
 
 pub struct vfio_region_sparse_mmap_area {
     pub offset: u64,
-    pub size: u64,
+    pub size: usize,
 }
 pub struct vfio_region_info_cap_sparse_mmap {
     pub header: vfio_info_cap_header,
@@ -134,8 +137,8 @@ pub const VFIO_REGION_SUBTYPE_GFX_EDID: u32 = 1;
 
 pub struct vfio_region_gfx_edid {
     pub edid_offset: u32,
-    pub edid_max_size: u32,
-    pub edid_size: u32,
+    pub edid_max_size: usize,
+    pub edid_size: usize,
     pub max_xres: u32,
     pub max_yres: u32,
     pub link_state: u32,
@@ -225,7 +228,7 @@ pub struct vfio_device_gfx_plane_info {
     pub width: u32,
     pub height: u32,
     pub stride: u32,
-    pub size: u32,
+    pub size: usize,
     pub x_pos: u32,
     pub y_pos: u32,
     pub x_hot: u32,
@@ -254,7 +257,7 @@ pub struct vfio_device_ioeventfd {
 pub struct vfio_iommu_type1_info {
     pub argsz: u32,
     pub flags: u32,
-    pub iova_pgsizes: u64,
+    pub iova_pgsizes: usize,
 }
 pub const VFIO_IOMMU_INFO_PGSIZES: u32 = 1 << 0;
 pub struct vfio_iommu_type1_dma_map {
@@ -262,7 +265,7 @@ pub struct vfio_iommu_type1_dma_map {
     pub flags: u32,
     pub vaddr: *mut u8,
     pub iova: *mut u8,
-    pub size: u64,
+    pub size: usize,
 }
 
 pub const VFIO_DMA_MAP_FLAG_READ: u32 = 1 << 0;
@@ -276,7 +279,7 @@ pub struct vfio_iommu_type1_dma_unmap {
 }
 
 pub struct vfio_iommu_spapr_tce_ddw_info {
-    pub pgsizes: u64,
+    pub pgsizes: usize,
     pub max_dynamic_windows_supported: u32,
     pub levels: u32,
 }
@@ -314,7 +317,7 @@ pub struct vfio_iommu_spapr_register_memory {
     pub argsz: u32,
     pub flags: u32,
     pub vaddr: u64,
-    pub size: u64,
+    pub size: usize,
 }
 pub struct vfio_iommu_spapr_tce_create {
     pub argsz: u32,
@@ -322,7 +325,7 @@ pub struct vfio_iommu_spapr_tce_create {
     /* in */
     pub page_shift: u32,
     pub resv1: u32,
-    pub window_size: u64,
+    pub window_size: usize,
     pub levels: u32,
     pub resv2: u32,
     /* out */
