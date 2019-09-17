@@ -11,8 +11,8 @@ use crate::prelude::*;
 //this mod functions for my laptop network pcie
 //pcie version pcie 3.0
 
-const CMD_REG_OFFSET: u64 = 4;
-const BUS_MS_ENABLE_BIT: u64 = 2;
+pub const CMD_REG_OFFSET: u64 = 4;
+pub const BUS_MS_ENABLE_BIT: u64 = 2;
 
 const ROOT_PCI_DVICE: &str = "/sys/bus/pci/devices/";
 
