@@ -31,9 +31,6 @@
 #
 ################################################################################
 */
-
-pub(crate) mod ioctl;
-pub(crate) mod vfio;
 //temparay fd
 #[repr(C)]
 #[derive(Copy, Clone)]

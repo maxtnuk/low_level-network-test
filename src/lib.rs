@@ -5,6 +5,7 @@ mod test_prelude {
 }
 
 mod devices;
+mod include;
 mod realtekfe;
 
 #[cfg(test)]

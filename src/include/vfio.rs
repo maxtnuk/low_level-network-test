@@ -274,8 +274,8 @@ pub const VFIO_DMA_MAP_FLAG_WRITE: u32 = 1 << 1;
 pub struct vfio_iommu_type1_dma_unmap {
     pub argsz: u32,
     pub flags: u32,
-    pub vaddr: u64,
-    pub iova: u64,
+    pub vaddr: *mut u8,
+    pub iova: *mut u8,
 }
 
 pub struct vfio_iommu_spapr_tce_ddw_info {
@@ -287,7 +287,7 @@ pub struct vfio_iommu_spapr_tce_ddw_info {
 pub struct vfio_eeh_pe_err {
     pub mtype: u32,
     pub func: u32,
-    pub addr: u64,
+    pub addr: *mut u8,
     pub mask: u64,
 }
 pub struct vfio_eeh_pe_op {
@@ -316,7 +316,7 @@ pub const VFIO_EEH_PE_INJECT_ERR: u32 = 9;
 pub struct vfio_iommu_spapr_register_memory {
     pub argsz: u32,
     pub flags: u32,
-    pub vaddr: u64,
+    pub vaddr: *mut u8,
     pub size: usize,
 }
 pub struct vfio_iommu_spapr_tce_create {
@@ -329,10 +329,10 @@ pub struct vfio_iommu_spapr_tce_create {
     pub levels: u32,
     pub resv2: u32,
     /* out */
-    pub start_addr: u64,
+    pub start_addr: *mut u8,
 }
 pub struct vfio_iommu_spapr_tce_remove {
     pub argsz: u32,
     pub flags: u32,
-    pub start_addr: u64,
+    pub start_addr: *mut u8,
 }
